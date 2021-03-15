@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/lyalyashechka/TP/DZ_C_C++/project/include/parab.h
+
+/home/lyalyashechka/TP/DZ_C_C++/project/src/parab.c
+stdlib.h
+-
+string.h
+-
+../include/parab.h
+/home/lyalyashechka/TP/DZ_C_C++/project/include/parab.h
+stdio.h
+/home/lyalyashechka/TP/DZ_C_C++/project/src/stdio.h
+

@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/tests.dir/project/test/test.cpp.o  -o tests  /usr/local/lib/libgtest.a -lpthread libstudy_std_lib.a 
