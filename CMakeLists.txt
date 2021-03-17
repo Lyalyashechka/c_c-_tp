@@ -7,7 +7,10 @@ set(CMAKE_CXX_STANDARD 17)
 SET(MYCOMPILE_FLAGS "-std=c11")
 set(LIB_SOURCE_FILES project/src/parab.c)
 add_Library(study_std_lib STATIC ${LIB_SOURCE_FILES})
-add_executable(prog project/src/main.c)
+include_directories(project/include)
+add_executable(prog
+    project/include/parab.h  
+    project/src/main.c)
 target_link_libraries(prog study_std_lib)
 
 

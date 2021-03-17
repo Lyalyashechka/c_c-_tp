@@ -6,11 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/lyalyashechka/TP/DZ_C_C++/project/include/parab.h
+../project/include/parab.h
+stdbool.h
+../project/include/stdbool.h
 
-/home/lyalyashechka/TP/DZ_C_C++/project/test/test.cpp
+/home/lyalyashechka/TP/c_c-_tp/project/test/test.cpp
 gtest/gtest.h
-/home/lyalyashechka/TP/DZ_C_C++/project/test/gtest/gtest.h
-../include/parab.h
-/home/lyalyashechka/TP/DZ_C_C++/project/include/parab.h
+/home/lyalyashechka/TP/c_c-_tp/project/test/gtest/gtest.h
+parab.h
+/home/lyalyashechka/TP/c_c-_tp/project/test/parab.h
 

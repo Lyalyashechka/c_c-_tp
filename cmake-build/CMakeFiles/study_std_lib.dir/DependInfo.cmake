@@ -4,12 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/lyalyashechka/TP/DZ_C_C++/project/src/parab.c" "/home/lyalyashechka/TP/DZ_C_C++/cmake-build/CMakeFiles/study_std_lib.dir/project/src/parab.c.o"
+  "/home/lyalyashechka/TP/c_c-_tp/project/src/parab.c" "/home/lyalyashechka/TP/c_c-_tp/cmake-build/CMakeFiles/study_std_lib.dir/project/src/parab.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
+  "../project/include"
   )
 
 # Targets to which this target links.

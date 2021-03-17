@@ -6,5 +6,5 @@ C_FLAGS =   -std=gnu11
 
 C_DEFINES = 
 
-C_INCLUDES = 
+C_INCLUDES = -I/home/lyalyashechka/TP/c_c-_tp/project/include 
 

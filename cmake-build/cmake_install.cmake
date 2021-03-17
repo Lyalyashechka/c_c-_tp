@@ -1,4 +1,4 @@
-# Install script for directory: /home/lyalyashechka/TP/DZ_C_C++
+# Install script for directory: /home/lyalyashechka/TP/c_c-_tp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/lyalyashechka/TP/DZ_C_C++/cmake-build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/lyalyashechka/TP/c_c-_tp/cmake-build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

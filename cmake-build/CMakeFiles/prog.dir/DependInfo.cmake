@@ -4,17 +4,18 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/lyalyashechka/TP/DZ_C_C++/project/src/main.c" "/home/lyalyashechka/TP/DZ_C_C++/cmake-build/CMakeFiles/prog.dir/project/src/main.c.o"
+  "/home/lyalyashechka/TP/c_c-_tp/project/src/main.c" "/home/lyalyashechka/TP/c_c-_tp/cmake-build/CMakeFiles/prog.dir/project/src/main.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
+  "../project/include"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/lyalyashechka/TP/DZ_C_C++/cmake-build/CMakeFiles/study_std_lib.dir/DependInfo.cmake"
+  "/home/lyalyashechka/TP/c_c-_tp/cmake-build/CMakeFiles/study_std_lib.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

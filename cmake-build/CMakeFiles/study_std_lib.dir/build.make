@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/lyalyashechka/TP/DZ_C_C++
+CMAKE_SOURCE_DIR = /home/lyalyashechka/TP/c_c-_tp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/lyalyashechka/TP/DZ_C_C++/cmake-build
+CMAKE_BINARY_DIR = /home/lyalyashechka/TP/c_c-_tp/cmake-build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/study_std_lib.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/study_std_lib.dir/flags.make
 
 CMakeFiles/study_std_lib.dir/project/src/parab.c.o: CMakeFiles/study_std_lib.dir/flags.make
 CMakeFiles/study_std_lib.dir/project/src/parab.c.o: ../project/src/parab.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lyalyashechka/TP/DZ_C_C++/cmake-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/study_std_lib.dir/project/src/parab.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/study_std_lib.dir/project/src/parab.c.o   -c /home/lyalyashechka/TP/DZ_C_C++/project/src/parab.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lyalyashechka/TP/c_c-_tp/cmake-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/study_std_lib.dir/project/src/parab.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/study_std_lib.dir/project/src/parab.c.o   -c /home/lyalyashechka/TP/c_c-_tp/project/src/parab.c
 
 CMakeFiles/study_std_lib.dir/project/src/parab.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/study_std_lib.dir/project/src/parab.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/lyalyashechka/TP/DZ_C_C++/project/src/parab.c > CMakeFiles/study_std_lib.dir/project/src/parab.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/lyalyashechka/TP/c_c-_tp/project/src/parab.c > CMakeFiles/study_std_lib.dir/project/src/parab.c.i
 
 CMakeFiles/study_std_lib.dir/project/src/parab.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/study_std_lib.dir/project/src/parab.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/lyalyashechka/TP/DZ_C_C++/project/src/parab.c -o CMakeFiles/study_std_lib.dir/project/src/parab.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/lyalyashechka/TP/c_c-_tp/project/src/parab.c -o CMakeFiles/study_std_lib.dir/project/src/parab.c.s
 
 # Object files for target study_std_lib
 study_std_lib_OBJECTS = \
@@ -80,7 +80,7 @@ study_std_lib_EXTERNAL_OBJECTS =
 libstudy_std_lib.a: CMakeFiles/study_std_lib.dir/project/src/parab.c.o
 libstudy_std_lib.a: CMakeFiles/study_std_lib.dir/build.make
 libstudy_std_lib.a: CMakeFiles/study_std_lib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lyalyashechka/TP/DZ_C_C++/cmake-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C static library libstudy_std_lib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lyalyashechka/TP/c_c-_tp/cmake-build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C static library libstudy_std_lib.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/study_std_lib.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/study_std_lib.dir/link.txt --verbose=$(VERBOSE)
 
@@ -94,6 +94,6 @@ CMakeFiles/study_std_lib.dir/clean:
 .PHONY : CMakeFiles/study_std_lib.dir/clean
 
 CMakeFiles/study_std_lib.dir/depend:
-	cd /home/lyalyashechka/TP/DZ_C_C++/cmake-build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/lyalyashechka/TP/DZ_C_C++ /home/lyalyashechka/TP/DZ_C_C++ /home/lyalyashechka/TP/DZ_C_C++/cmake-build /home/lyalyashechka/TP/DZ_C_C++/cmake-build /home/lyalyashechka/TP/DZ_C_C++/cmake-build/CMakeFiles/study_std_lib.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/lyalyashechka/TP/c_c-_tp/cmake-build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/lyalyashechka/TP/c_c-_tp /home/lyalyashechka/TP/c_c-_tp /home/lyalyashechka/TP/c_c-_tp/cmake-build /home/lyalyashechka/TP/c_c-_tp/cmake-build /home/lyalyashechka/TP/c_c-_tp/cmake-build/CMakeFiles/study_std_lib.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/study_std_lib.dir/depend
 
