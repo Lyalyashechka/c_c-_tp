@@ -1,2 +1,0 @@
-/usr/bin/ar qc libstudy_std_lib.a  CMakeFiles/study_std_lib.dir/project/src/parab.c.o
-/usr/bin/ranlib libstudy_std_lib.a

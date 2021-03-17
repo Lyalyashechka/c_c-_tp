@@ -1,6 +1,0 @@
-/home/lyalyashechka/TP/c_c-_tp/cmake-build/CMakeFiles/rebuild_cache.dir
-/home/lyalyashechka/TP/c_c-_tp/cmake-build/CMakeFiles/edit_cache.dir
-/home/lyalyashechka/TP/c_c-_tp/cmake-build/CMakeFiles/test.dir
-/home/lyalyashechka/TP/c_c-_tp/cmake-build/CMakeFiles/tests.dir
-/home/lyalyashechka/TP/c_c-_tp/cmake-build/CMakeFiles/prog.dir
-/home/lyalyashechka/TP/c_c-_tp/cmake-build/CMakeFiles/study_std_lib.dir
