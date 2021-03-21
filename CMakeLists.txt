@@ -4,7 +4,7 @@ project(parabols)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
-SET(MYCOMPILE_FLAGS "-std=c11")
+SET(MYCOMPILE_FLAGS "-std=c11 -fprofile-arcs -ftest-coverage -fPIC -O0")
 set(LIB_SOURCE_FILES project/src/parab.c)
 add_Library(study_std_lib STATIC ${LIB_SOURCE_FILES})
 include_directories(project/include)
