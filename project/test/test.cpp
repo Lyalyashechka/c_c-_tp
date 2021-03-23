@@ -3,7 +3,7 @@ extern "C" {
     #include "parab.h"
 }
 //Вычисление определителя
-TEST(determenant,test_1){
+TEST(determenant, det_is_0_more0_less0){
     float matrix[3][3] = {{0, 0, 0}, {0, 0, 0}, {0, 0, 1}};
     float matrix_1[3][3] = {{10, 3, 4}, {40, 10, 6}, {73, 8, 9}};
     float matrix_2[3][3] = {{7, 28, 43}, {40, 5, 63}, {73, 8, 9}};
@@ -15,7 +15,7 @@ TEST(determenant,test_1){
     ASSERT_FLOAT_EQ(det_2, 113544);
 } 
 //Проверка замены столбца матрицы
-TEST(change_matrix, test_1){
+TEST(change_matrix, change){
     float matrix[3][3] = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
     change_matrix(matrix, 0, 1, 1, 1);
     ASSERT_FLOAT_EQ(matrix[0][0], 1);
@@ -33,7 +33,7 @@ TEST(string_is_double, two_point_in_number){
     char* s = "0.545.4340";
     EXPECT_EQ(string_is_double(s), false);
 }
-TEST(string_is_double, one_word){
+TEST(string_is_double, word){
     char* s = "3543.2432a0";
     EXPECT_EQ(string_is_double(s), false);
 }
@@ -56,7 +56,7 @@ TEST(coef_paraboly, two_point){
     float a, b, c;
     EXPECT_EQ(coef_paraboly(t2, &a, &b, &c), code_invalid_data);
 }
-TEST(coef_paraboly, typical1){   
+TEST(coef_paraboly, correctly_data_for_parabols_1){   
     struct pointer t2[3];
     t2[0].x = t2[0].y = 0;
     t2[1].x = t2[1].y = 1;
@@ -68,7 +68,7 @@ TEST(coef_paraboly, typical1){
     ASSERT_FLOAT_EQ(b, 0.99);
     ASSERT_FLOAT_EQ(c, 0);
 }
-TEST(coef_paraboly, typical2){   
+TEST(coef_paraboly, correctly_data_for_parabols_2){   
     struct pointer t2[3];
     t2[0].x = t2[0].y = 0;
     t2[1].x = t2[1].y = 1;

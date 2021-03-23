@@ -1,11 +1,6 @@
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
 #include "parab.h"
-#include "stdio.h"
 
-
-float determenant(float matrix[][size_matrix]) {
+float determenant(const float matrix[][size_matrix]) {
     if (matrix == NULL)
        return code_invalid_data;
     return matrix[0][0] * matrix[1][1] * matrix[2][2] + matrix[0][1] * matrix[1][2] * matrix[2][0]
@@ -55,19 +50,16 @@ int coef_paraboly(struct pointer* coord, float *a, float *b, float *c) {
                 (coord[1].x == coord[2].x && coord[1].y == coord[2].y)) && 
                 !((coord[0].x == coord[1].x && coord[1].x == coord[2].x) &&
                  (coord[0].y == coord[1].y && coord[1].y == coord[2].y))) {
-        printf("Invalid data");
         return code_invalid_data;
     }
     else if (det_main == 0 && det_a == 0 && det_b == 0 && det_c == 0) {
-        printf("infinite number of parabols");
         return code_infinity_parab;
     }
     else {
-        printf("it's impossible to draw parabolas through these three points");
         return code_impossible;
     }
 }
-bool string_is_double(char* s) {
+bool string_is_double(const char* s) {
     if (s == NULL)
         return false;
     if ((s[0]<'0' || s[0] > '9') && s[0] != '-')

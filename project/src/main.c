@@ -4,10 +4,6 @@
 // y3 = a * x3^2 + b * x3 + c
 // метод позволяет рассматривать случаи, когда через точки невозможно провести
 // параболу
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
 #include "parab.h"
 
 #define max_size_string 100
@@ -18,7 +14,20 @@ int main() {
     if (input(coord)) {
         float a, b, c;
         int checkError = coef_paraboly(coord, &a, &b, &c);
-        printf("%d %f %f %f", checkError, a, b, c);
+        switch (checkError) {
+            case code_invalid_data:
+                assert("Invalid data");
+                break;
+            case code_infinity_parab:
+                assert("infinite number of parabols");
+                break;
+            case code_impossible:
+                assert("It's imossible to draw parabols through these three points");
+                break;
+            case code_all_good:
+                printf("%f %f %f", a, b, c);
+                break;
+        }
     }
 }
 bool input(struct pointer coord[size_matrix]) {
