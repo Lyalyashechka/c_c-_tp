@@ -1,0 +1,4 @@
+/cmake-build
+.*
+!.gitignore
+!.travis.yml
