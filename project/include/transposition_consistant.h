@@ -1,0 +1,1 @@
+int transposition_consistant(double** matrix, double** transposition_matrix, int size_n, int size_m);
