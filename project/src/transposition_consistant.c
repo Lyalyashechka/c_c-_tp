@@ -6,6 +6,5 @@ int transposition_consistant(double** matrix, double** transposition_matrix, int
             transposition_matrix[j][i] = matrix[i][j];
         }
     }
-    
     return 0;
 }
