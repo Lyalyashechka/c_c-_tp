@@ -20,7 +20,8 @@ int start_process(int num_process, int* process_started) {
     }
     return -1;
 }
-int transposition_parallel(double** matrix, double* transpose_matrix, int n, int m) {
+double* transposition(double** matrix, int n, int m) {
+    double* transpose_matrix = mmap(NULL, m * n * sizeof(double), PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
     int num_process = sysconf(_SC_NPROCESSORS_ONLN);
     int count_row = n / num_process;
     int* process_started = (int*)malloc(num_process * sizeof(int));
@@ -34,6 +35,6 @@ int transposition_parallel(double** matrix, double* transpose_matrix, int n, int
     }
     for ( int i = 0; i != num_process; ++i ) {
         while ( waitpid(process_started[i], NULL, 0) > 0 ) {} }
-    return 0;
+    return transpose_matrix;
     
 }

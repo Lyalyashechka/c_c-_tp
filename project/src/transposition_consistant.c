@@ -1,10 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "transposition_consistant.h"
-int transposition_consistant(double** matrix, double** transposition_matrix, int size_n, int size_m) {
+double* transposition(double** matrix, int size_n, int size_m) {
+    double *transposition_matrix = (double*)malloc(size_n * size_m * sizeof(double*));
     for (int i = 0; i < size_n; i++) {
         for (int j = 0; j < size_m; j++) {
-            transposition_matrix[j][i] = matrix[i][j];
+            transposition_matrix[i + size_m * j] = matrix[i][j];
         }
     }
-    return 0;
+    return transposition_matrix;
 }

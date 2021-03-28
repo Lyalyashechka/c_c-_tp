@@ -7,4 +7,4 @@
 #include <time.h>
 #include <mcheck.h>
 #include <stdio.h>
-int transposition_parallel(double** matrix, double* transpose_matrix, int n, int m);
+double* transposition(double** matrix, int n, int m);
