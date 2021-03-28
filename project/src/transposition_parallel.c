@@ -1,43 +1,39 @@
-#include <pthread.h>
-#include <mcheck.h>
-#include <stdio.h>
+
 #include "transposition_parallel.h"
 
-void* transpose_thread(void *argThread) {
-    argMatrix_t * mrx = (argMatrix_t*) argThread;
-    for (int i = mrx->rows_start; i < mrx->rows_end; i++) {
-        for (int j = 0; j < mrx->num_colons; j++) {
-            mrx->transpose_matrix[j][i] = mrx->matrix[i][j];
+void transpose_process(double **matrix, double* transpose_matrix, int rows_start, int rows_end, int num_colons) {
+    for (int i = rows_start; i < rows_end; i++) {
+        for (int j = 0; j < num_colons; j++) {
+            transpose_matrix[i + num_colons * j] = matrix[i][j];
         }
     }
-    return NULL;
+    _exit(0);
 }
-
-int transposition_parallel(double** matrix, double** transpose_matrix, int n, int m) {
-    //опеределяем количество потоков в зависимости от системы
-    long num_thread = sysconf(_SC_NPROCESSORS_ONLN);
-    assert(num_thread >= 1);
-
-    pthread_t* threads = (pthread_t*)malloc(num_thread * sizeof(pthread_t));
-    argMatrix_t* threads_data = (argMatrix_t*)malloc(num_thread * sizeof(argMatrix_t));
-    //находим количество строк обрабатываемые одним потоком 
-    int count_row = n / num_thread;
+int start_process(int num_process, int* process_started) {
     int i = 0;
-    for (i = 0; i < num_thread; i++) {
-        if (i == num_thread - 1) threads_data[i].rows_end = n;
-        else threads_data[i].rows_end = (i + 1) * count_row;
-        threads_data[i].rows_start = i * count_row;
-        threads_data[i].num_colons = m;
-        threads_data[i].matrix = matrix;
-        threads_data[i].transpose_matrix = transpose_matrix;
-        pthread_create(&(threads[i]), NULL, transpose_thread, &threads_data[i]);
+    for (i = 0; i < num_process; ++i) {
+        int pid = fork();
+        if (pid == 0)
+            return i;
+        else
+            process_started[i] = pid;
     }
-
-
-    for(int i = 0; i < num_thread; i++) {
-	    pthread_join(threads[i], NULL);
+    return -1;
+}
+int transposition_parallel(double** matrix, double* transpose_matrix, int n, int m) {
+    int num_process = sysconf(_SC_NPROCESSORS_ONLN);
+    int count_row = n / num_process;
+    int* process_started = (int*)malloc(num_process * sizeof(int));
+    int id_proc = start_process(num_process, process_started);
+    if (id_proc != -1) {
+        if (id_proc == num_process - 1)
+            transpose_process(matrix, transpose_matrix, id_proc * count_row, n, m);
+        else
+            transpose_process(matrix, transpose_matrix, id_proc * count_row, (id_proc+1) * count_row, m);
+              
     }
-    free(threads_data);
-    free(threads);
+    for ( int i = 0; i != num_process; ++i ) {
+        while ( waitpid(process_started[i], NULL, 0) > 0 ) {} }
     return 0;
+    
 }
