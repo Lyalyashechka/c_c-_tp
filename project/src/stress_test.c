@@ -1,10 +1,8 @@
 #include <malloc.h>
-#include <time.h>
 #include <omp.h>
 #include <dlfcn.h>
 #include "creating_matrix.h"
-#include "transposition_consistant.h"
-#include "transposition_parallel.h"
+
 int main() {
     srand(time(NULL));
     FILE * file_matrix;

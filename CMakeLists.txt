@@ -12,14 +12,12 @@ include_directories(project/include)
 add_library(transpose_naive STATIC
     project/src/creating_matrix.c
     project/src/transposition_consistant.c
-    project/include/creating_matrix.h
-    project/include/transposition_consistant.h)
+    project/include/creating_matrix.h)
 
 add_library(transpose_parallel SHARED
     project/src/creating_matrix.c
     project/src/transposition_parallel.c
-    project/include/creating_matrix.h
-    project/include/transposition_parallel.h)
+    project/include/creating_matrix.h)
 
 
 add_executable(naive
@@ -28,9 +26,9 @@ add_executable(naive
 add_executable(parallel
     project/src/main.c)
 
-add_executable(stress 
-    project/src/stress_test.c)
+#add_executable(stress 
+#    project/src/stress_test.c)
 target_link_libraries(naive transpose_naive)
 target_link_libraries(parallel transpose_parallel)
-target_link_libraries(stress dl transpose_naive transpose_parallel)
+#target_link_libraries(stress dl transpose_naive transpose_parallel)
 
