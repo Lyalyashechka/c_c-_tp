@@ -21,6 +21,7 @@ int start_process(int num_process, int* process_started) {
     return -1;
 }
 double* transposition(double** matrix, int n, int m) {
+    printf("Hello from parallel\n");
     double* transpose_matrix = mmap(NULL, m * n * sizeof(double), PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
     int num_process = sysconf(_SC_NPROCESSORS_ONLN);
     int count_row = n / num_process;
