@@ -1,4 +1,5 @@
 #include "creating_matrix.h"
+
 int create_file_with_random_number_matrix(FILE* file_matrix, double** matrix, int size_n, int size_m) {
     if (!file_matrix) return code_error_file;
     for (int i = 0; i < size_n; i++) {
@@ -10,7 +11,8 @@ int create_file_with_random_number_matrix(FILE* file_matrix, double** matrix, in
     }
     fclose(file_matrix);
     return code_all_good;
-} 
+}
+
 int get_matrix_from_file(FILE* file_matrix, double** matrix, int size_n, int size_m) {
     if (!file_matrix) return code_error_file;
     if (!matrix) return code_error_array;

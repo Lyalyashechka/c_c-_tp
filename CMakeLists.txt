@@ -26,9 +26,9 @@ add_executable(naive
 add_executable(parallel
     project/src/main.c)
 
-#add_executable(stress 
-#    project/src/stress_test.c)
+add_executable(stress 
+    project/src/stress_test.c)
 target_link_libraries(naive transpose_naive)
 target_link_libraries(parallel transpose_parallel)
-#target_link_libraries(stress dl transpose_naive transpose_parallel)
+target_link_libraries(stress dl transpose_naive transpose_parallel)
 
