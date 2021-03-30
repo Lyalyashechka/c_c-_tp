@@ -33,13 +33,13 @@ int main(int argc, char* argv[]) {
         break;
     }
     
-    double* transposed_matrix = mmap(NULL, n * m * sizeof(double), PROT_READ 
-                                            | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
-
-    clock_t begin_synch = clock();
+    /*double* transposed_matrix = mmap(NULL, n * m * sizeof(double), PROT_READ 
+                                            | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);*/
+    double* transposed_matrix = (double*)malloc(n*m*sizeof(double)); 
+    clock_t begin = clock();
     int er_transposition = transposition((const double**)matrix, transposed_matrix, n, m);
-    clock_t end_synch = clock();
-    double time_spent_cons = (double)(end_synch - begin_synch) * 1000.0 / CLOCKS_PER_SEC;
+    clock_t end = clock();
+    double time_spent_cons = (double)(end - begin) * 1000.0 / CLOCKS_PER_SEC;
     printf("%lf", time_spent_cons);
     switch (er_transposition)
     {
