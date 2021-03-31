@@ -5,9 +5,9 @@
 
 int main() {
     srand(time(NULL));
-    
-    int n = 5000,
-        m = 5000;
+    struct timespec mt1, mt2, mt3, mt4; 
+    int n = 20000,
+        m = 10000;
     double** matrix = (double**)malloc(n * sizeof(double*));
     for (int i = 0; i < n; i++) matrix[i] = (double*)malloc(m * sizeof(double));
     double* transposed_matrix_for_naive = (double*)malloc(n * m * sizeof(double));
@@ -23,13 +23,13 @@ int main() {
     void* library;
     int (*my_func)(const double** matrix, double* transposed_matrix, int size_n, int size_m);
     library = dlopen("libtranspose_parallel.so", RTLD_LAZY);
-    
+    long int tt; 
     *(int**)(&my_func) = dlsym(library, "transposition");
-    clock_t begin_parall = clock();
+    clock_gettime(CLOCK_MONOTONIC, &mt1);
     int result = (*my_func)((const double**)matrix, transposed_matrix_for_parallel, n, m);
-    clock_t end_parall = clock();
-    double time_spent_parall = (double)(end_parall - begin_parall) * 1000.0 / CLOCKS_PER_SEC;
-    printf("PARAL: %lf \n", time_spent_parall);
+    clock_gettime(CLOCK_MONOTONIC, &mt2);
+    tt=1000000000*(mt2.tv_sec - mt1.tv_sec)+(mt2.tv_nsec - mt1.tv_nsec);
+    printf("PARAL: %ld \n", tt);
     dlclose(library);
     switch (result)
     {
@@ -42,11 +42,11 @@ int main() {
     default:
         break;
     }
-    clock_t begin = clock();
+    clock_gettime(CLOCK_MONOTONIC, &mt3);
     int result1 = transposition((const double**)matrix, transposed_matrix_for_naive, n, m);
-    clock_t end = clock();
-    double time = (double)(end - begin) * 1000.0 / CLOCKS_PER_SEC;
-    printf("Synch: %lf \n", time);
+    clock_gettime(CLOCK_MONOTONIC, &mt4);
+    tt=1000000000*(mt4.tv_sec - mt3.tv_sec)+(mt4.tv_nsec - mt3.tv_nsec);
+    printf("PARAL: %ld \n", tt);
     switch (result1)
     {
     case code_error_array:
