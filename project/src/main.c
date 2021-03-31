@@ -2,16 +2,23 @@
 #include <omp.h>
 #include "creating_matrix.h"
 
-
 int main(int argc, char* argv[]) {
-    if (argc < 2) assert("Invalid arguments");
+    if (argc < 2) {
+        assert("Invalid arguments");
+        exit(0);
+    }
     FILE * file_matrix = fopen(argv[1],"r");
-    if (!file_matrix) assert("Invalid file");
-    
+    if (!file_matrix) {
+        assert("Invalid file");
+        exit(0);
+    }
     int n = 0,
         m = 0;
-    if (fscanf(file_matrix, "%d %d", &n, &m) != 2) 
+    if (fscanf(file_matrix, "%d %d", &n, &m) != 2) {
         assert("Invalid size matrix in file");
+        fclose(file_matrix);
+        exit(0);
+    }
 
     double **matrix = (double**)malloc(n * sizeof(double*));
     for (int i = 0; i < n; i++) matrix[i] = (double*)malloc(m * sizeof(double));
@@ -21,39 +28,46 @@ int main(int argc, char* argv[]) {
 
     switch (er_inicialization_matrix) {
     case code_error_file:
+        free_memory_to_matrix(matrix, n);
         assert("Invalid file");
+        exit(0);
         break;
     case code_error_array:
+        free_memory_to_matrix(matrix, n);
         assert("Invalid array");
+        exit(0);
         break;
     case code_error_size_matrix_in_file:
+        free_memory_to_matrix(matrix, n);
         assert("True size of matrix != size in file");
+        exit(0);
         break;
     default:
         break;
     }
-    
-    /*double* transposed_matrix = mmap(NULL, n * m * sizeof(double), PROT_READ 
-                                            | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);*/
+
     double* transposed_matrix = (double*)malloc(n*m*sizeof(double)); 
-    clock_t begin = clock();
     int er_transposition = transposition((const double**)matrix, transposed_matrix, n, m);
-    clock_t end = clock();
-    double time_spent_cons = (double)(end - begin) * 1000.0 / CLOCKS_PER_SEC;
-    printf("%lf", time_spent_cons);
+
     switch (er_transposition)
     {
     case code_error_array:
+        free(transposed_matrix);
+        free_memory_to_matrix(matrix, n);
         assert("Invalid array");
+        exit(0);
         break;
-    case code_error_fork:
-        assert("Failed in create new fork");
+    case code_error_thread:
+        free(transposed_matrix);
+        free_memory_to_matrix(matrix, n);
+        assert("Failed in thread");
+        exit(0);
         break;
     default:
         break;
     }
     
-    munmap(transposed_matrix, n * m * sizeof(double));
+    free(transposed_matrix);
     for (int i = 0; i < n; i++) free(matrix[i]);
     free(matrix);
     

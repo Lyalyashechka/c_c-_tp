@@ -1,56 +1,70 @@
 #include <malloc.h>
-#include <omp.h>
 #include <dlfcn.h>
 #include "creating_matrix.h"
+
 
 int main() {
     srand(time(NULL));
     struct timespec mt1, mt2, mt3, mt4; 
-    int n = 20000,
-        m = 10000;
+    int n = 10000,
+        m = 5000;
+    
     double** matrix = (double**)malloc(n * sizeof(double*));
     for (int i = 0; i < n; i++) matrix[i] = (double*)malloc(m * sizeof(double));
     double* transposed_matrix_for_naive = (double*)malloc(n * m * sizeof(double));
-    /*double* transposed_matrix_for_parallel = mmap(NULL, n * m * sizeof(double), PROT_READ 
-                                            | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
-*/
     double* transposed_matrix_for_parallel = (double*)malloc(n * m * sizeof(double));
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-            matrix[i][j] = rand() % 100 + (rand() % 1000000) / 1000000.0;
+            matrix[i][j] = rand () %100 + rand () % 675 / 1000000;
         }
     }
+    
     void* library;
     int (*my_func)(const double** matrix, double* transposed_matrix, int size_n, int size_m);
     library = dlopen("libtranspose_parallel.so", RTLD_LAZY);
     long int tt; 
     *(int**)(&my_func) = dlsym(library, "transposition");
     clock_gettime(CLOCK_MONOTONIC, &mt1);
-    int result = (*my_func)((const double**)matrix, transposed_matrix_for_parallel, n, m);
+    int result_parallel = (*my_func)((const double**)matrix, transposed_matrix_for_parallel, n, m);
     clock_gettime(CLOCK_MONOTONIC, &mt2);
     tt=1000000000*(mt2.tv_sec - mt1.tv_sec)+(mt2.tv_nsec - mt1.tv_nsec);
-    printf("PARAL: %ld \n", tt);
+    printf("Paral: %ld mc \n", tt);
     dlclose(library);
-    switch (result)
+    
+    switch (result_parallel)
     {
     case code_error_array:
+        free(transposed_matrix_for_parallel);
+        free(transposed_matrix_for_naive);
+        free_memory_to_matrix(matrix, n);
         assert("Invalid array");
+        exit(0);
         break;
-    case code_error_fork:
-        assert("Failed in create new fork");
+    case code_error_thread:
+        free(transposed_matrix_for_parallel);
+        free(transposed_matrix_for_naive);
+        free_memory_to_matrix(matrix, n);
+        assert("Failed in thread");
+        exit(0);
         break;
     default:
         break;
     }
+    
     clock_gettime(CLOCK_MONOTONIC, &mt3);
     int result1 = transposition((const double**)matrix, transposed_matrix_for_naive, n, m);
     clock_gettime(CLOCK_MONOTONIC, &mt4);
     tt=1000000000*(mt4.tv_sec - mt3.tv_sec)+(mt4.tv_nsec - mt3.tv_nsec);
-    printf("PARAL: %ld \n", tt);
+    printf("Naive: %ld mc \n", tt);
+    
     switch (result1)
     {
     case code_error_array:
+        free_memory_to_matrix(matrix, n);
+        free(transposed_matrix_for_parallel);
+        free(transposed_matrix_for_naive);
         assert("Invalid array");
+        exit(0);
         break;
     default:
         break;
@@ -60,20 +74,22 @@ int main() {
     free(matrix);
     
     int error_transpose_detector = 0;
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < 1000; i++)
     {
-        int rows = rand() % 5;
-        int colons = rand() % 3;
+        int rows = rand() % m;
+        int colons = rand() % n;
         if (transposed_matrix_for_parallel[rows*n + colons] != transposed_matrix_for_naive[rows*n + colons])
             error_transpose_detector = 1;
         if (error_transpose_detector) {
             assert("Stress test failed");
+            free(transposed_matrix_for_naive);
+            free(transposed_matrix_for_parallel);
             exit(0);
         }
     }
-    printf("All good");   
+    printf("Stress test correct \n");   
     
     free(transposed_matrix_for_parallel);
-    
+    free(transposed_matrix_for_naive);
  
 }
