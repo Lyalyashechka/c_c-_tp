@@ -45,7 +45,6 @@ int main(int argc, char* argv[]) {
     default:
         break;
     }
- 
     int er_transposition = transposition((const double**)matrix, transposed_matrix, n, m);
 
     switch (er_transposition)
