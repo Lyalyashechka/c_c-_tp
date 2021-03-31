@@ -1,4 +1,3 @@
-#include <malloc.h>
 #include <dlfcn.h>
 #include "creating_matrix.h"
 
@@ -6,8 +5,8 @@
 int main() {
     srand(time(NULL));
     struct timespec mt1, mt2, mt3, mt4; 
-    int n = 10000,
-        m = 5000;
+    int n = 5,
+        m = 3;
     
     double** matrix = (double**)malloc(n * sizeof(double*));
     for (int i = 0; i < n; i++) matrix[i] = (double*)malloc(m * sizeof(double));
@@ -35,15 +34,13 @@ int main() {
     {
     case code_error_array:
         free(transposed_matrix_for_parallel);
-        free(transposed_matrix_for_naive);
-        free_memory_to_matrix(matrix, n);
+        free_memory_to_matrix(matrix, transposed_matrix_for_naive, n);
         assert("Invalid array");
         exit(0);
         break;
     case code_error_thread:
         free(transposed_matrix_for_parallel);
-        free(transposed_matrix_for_naive);
-        free_memory_to_matrix(matrix, n);
+        free_memory_to_matrix(matrix, transposed_matrix_for_naive, n);
         assert("Failed in thread");
         exit(0);
         break;
@@ -60,9 +57,8 @@ int main() {
     switch (result1)
     {
     case code_error_array:
-        free_memory_to_matrix(matrix, n);
+        free_memory_to_matrix(matrix, transposed_matrix_for_naive, n);
         free(transposed_matrix_for_parallel);
-        free(transposed_matrix_for_naive);
         assert("Invalid array");
         exit(0);
         break;

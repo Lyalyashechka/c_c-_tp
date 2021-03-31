@@ -25,8 +25,9 @@ int get_matrix_from_file(FILE* file_matrix, double** matrix, int size_n, int siz
     return code_all_good;
 }
 
-void free_memory_to_matrix (double ** matrix, int n) {
+void free_memory_to_matrix (double** matrix, double* transposed_matrix, int n) {
     for (int i = 0; i < n; i++) free(matrix[i]);
     free (matrix);
+    free(transposed_matrix);
 }
 

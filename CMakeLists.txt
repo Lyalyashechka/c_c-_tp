@@ -28,7 +28,26 @@ add_executable(parallel
 
 add_executable(stress 
     project/src/stress_test.c)
+
+
+
 target_link_libraries(naive transpose_naive)
 target_link_libraries(parallel transpose_parallel)
 target_link_libraries(stress dl transpose_naive transpose_parallel)
 
+
+
+enable_testing()
+
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIR})
+message(${GTEST_LIBRARIES})
+add_executable(test_naive
+    project/test/tests.cpp
+    project/src/transposition_consistant.c)
+
+add_executable(test_parallel
+    project/test/tests.cpp
+    project/src/transposition_parallel.c)    
+target_link_libraries(test_naive ${GTEST_LIBRARIES} transpose_naive)
+target_link_libraries(test_parallel ${GTEST_LIBRARIES} transpose_parallel)
