@@ -84,7 +84,6 @@ int main() {
         }
     }
     printf("Stress test correct \n");   
-    
     free(transposed_matrix_for_parallel);
     free(transposed_matrix_for_naive);
  
