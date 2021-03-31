@@ -5,8 +5,8 @@
 int main() {
     srand(time(NULL));
     struct timespec mt1, mt2, mt3, mt4; 
-    int n = 5,
-        m = 3;
+    int n = 15000,
+        m = 10000;
     
     double** matrix = (double**)malloc(n * sizeof(double*));
     for (int i = 0; i < n; i++) matrix[i] = (double*)malloc(m * sizeof(double));
