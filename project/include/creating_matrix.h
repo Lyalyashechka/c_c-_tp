@@ -13,7 +13,6 @@
 #define code_error_array 4
 #define code_error_size_matrix_in_file 5
 
-
 int create_file_with_random_number_matrix(FILE* file_matrix, double** matrix, int size_n, int size_m);
 int get_matrix_from_file(FILE* file_matrix, double** matrix, int size_n, int size_m);
 int transposition(const double** matrix, double* transposed_matrix, int size_n, int size_m);
